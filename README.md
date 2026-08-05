@@ -1,5 +1,7 @@
 # BDX Droid URDF
 
+English | [中文](README_CN.md)
+
 URDF description package for the BDX Droid — a bipedal robot built with Unitree GO-M8010-6 actuators. This package provides the robot model, 3D meshes, and launch files for visualization and simulation in ROS.
 
 ## Robot Overview
