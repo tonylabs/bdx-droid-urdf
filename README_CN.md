@@ -1,12 +1,10 @@
-# BDX Droid URDF
+# BD-927 Droid URDF
 
-[English](README.md) | 中文
-
-BDX Droid 的 URDF 描述包 —— 一款基于 Unitree GO-M8010-6 电机的双足机器人。本包提供机器人模型、3D 网格文件以及用于 ROS 可视化和仿真的 Launch 文件。
+BD-927 Droid 的 URDF 描述包 —— 一款基于 Unitree GO-M8010-6 电机的双足机器人。本包提供机器人模型、3D 网格文件。
 
 ## 机器人概览
 
-BDX Droid 是一款双足平台，全身共 **17 个旋转关节**，分布在躯干、双腿、头部和天线。
+BD-927 Droid 是一款双足平台，全身共 **16 个旋转关节**，分布在躯干、双腿、头部和天线。
 
 ### 腿部（左右各 1 条，每条 5 自由度）
 
@@ -38,52 +36,11 @@ BDX Droid 是一款双足平台，全身共 **17 个旋转关节**，分布在�
 
 - **IMU** — 固定连杆（`imu_link`），安装在 `base_link` 上（HiPNUC HI13）
 
-## 包目录结构
-
-```
-bdx-droid-urdf/
-├── CMakeLists.txt          # Catkin 构建配置
-├── package.xml             # ROS 包描述文件
-├── config/
-│   └── joint_names_bdx.yaml
-├── launch/
-│   ├── display.launch      # RViz 可视化
-│   └── gazebo.launch       # Gazebo 仿真
-├── meshes/
-│   └── *.STL               # 23 个网格文件（视觉 + 碰撞）
-└── urdf/
-    ├── bdx.urdf            # 机器人描述文件
-    └── bdx.csv             # 完整连杆/关节导出数据
-```
-
-## 前置依赖
-
-- **ROS**（已测试 Noetic）
-- `robot_state_publisher`
-- `joint_state_publisher_gui`
-- `rviz`
-- `gazebo_ros`（仿真用）
-
-## 使用方法
-
-### 在 RViz 中可视化
-
-```bash
-roslaunch bdx display.launch
-```
-
-### 在 Gazebo 中仿真
-
-```bash
-roslaunch bdx gazebo.launch
-```
-
 ## 模型参数
 
 - **连杆总数：** 20（含 `base_link` 和 `imu_link`）
-- **关节总数：** 17 个旋转关节 + 1 个固定关节
+- **关节总数：** 16 个旋转关节 + 1 个固定关节
 - **电机型号：** Unitree GO-M8010-6
-- **URDF 来源：** 由 SolidWorks 通过 [sw_urdf_exporter](http://wiki.ros.org/sw_urdf_exporter)（v1.6.0）自动导出
 
 ## 许可证
 

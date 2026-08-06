@@ -1,12 +1,10 @@
-# BDX Droid URDF
+# BD-927 Droid URDF
 
-English | [中文](README_CN.md)
-
-URDF description package for the BDX Droid — a bipedal robot built with Unitree GO-M8010-6 actuators. This package provides the robot model, 3D meshes, and launch files for visualization and simulation in ROS.
+URDF description package for the BD-927 Droid — a bipedal robot built with Unitree GO-M8010-6 actuators. This package provides the robot model, 3D meshes, and launch files for visualization and simulation in ROS.
 
 ## Robot Overview
 
-The BDX Droid is a bipedal platform with **17 revolute joints** across the body, legs, head, and antennas.
+The BD-927 Droid is a bipedal platform with **16 revolute joints** across the body, legs, head, and antennas.
 
 ### Legs (×2 — left/right, 5 DOF each)
 
@@ -38,52 +36,11 @@ The BDX Droid is a bipedal platform with **17 revolute joints** across the body,
 
 - **IMU** — fixed link (`imu_link`) attached to `base_link` (HiPNUC HI13)
 
-## Package Contents
-
-```
-bdx-droid-urdf/
-├── CMakeLists.txt          # Catkin build configuration
-├── package.xml             # ROS package manifest
-├── config/
-│   └── joint_names_bdx.yaml
-├── launch/
-│   ├── display.launch      # RViz visualization
-│   └── gazebo.launch       # Gazebo simulation
-├── meshes/
-│   └── *.STL               # 23 mesh files (visual + collision)
-└── urdf/
-    ├── bdx.urdf            # Robot description
-    └── bdx.csv             # Full link/joint export data
-```
-
-## Prerequisites
-
-- **ROS** (tested with Noetic)
-- `robot_state_publisher`
-- `joint_state_publisher_gui`
-- `rviz`
-- `gazebo_ros` (for simulation)
-
-## Usage
-
-### Visualize in RViz
-
-```bash
-roslaunch bdx display.launch
-```
-
-### Launch in Gazebo
-
-```bash
-roslaunch bdx gazebo.launch
-```
-
 ## Model Details
 
 - **Total links:** 20 (including `base_link` and `imu_link`)
-- **Total joints:** 17 revolute + 1 fixed
+- **Total joints:** 16 revolute + 1 fixed
 - **Actuators:** Unitree GO-M8010-6
-- **URDF source:** Exported from SolidWorks using the [sw_urdf_exporter](http://wiki.ros.org/sw_urdf_exporter) (v1.6.0)
 
 ## License
 
