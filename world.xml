@@ -85,5 +85,6 @@
         <magnetometer  name='magnetometer'        site='imu'/>
 		<gyro name="imu_gyro" site="imu" noise="0.0" />
    		<accelerometer name="imu_acc" site="imu" />
+		<framequat name="imu_quat" objtype="site" objname="imu" />
     </sensor>
 </mujoco>
