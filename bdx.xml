@@ -1,134 +1,107 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<mujoco model="bdx">
-  <compiler angle="radian" meshdir="meshes"/>
-
-  <asset>
-    <mesh file="base_link.stl"/>
-    <mesh file="imu_link.stl"/>
-    <mesh file="hip_yaw_l_link.stl"/>
-    <mesh file="hip_roll_l_link.stl"/>
-    <mesh file="hip_pitch_l_link.stl"/>
-    <mesh file="knee_pitch_l_link.stl"/>
-    <mesh file="ankle_pitch_l_link.stl"/>
-    <mesh file="hip_yaw_r_link.stl"/>
-    <mesh file="hip_roll_r_link.stl"/>
-    <mesh file="hip_pitch_r_link.stl"/>
-    <mesh file="knee_pitch_r_link.stl"/>
-    <mesh file="ankle_pitch_r_link.stl"/>
-    <mesh file="neck_pitch_link.stl"/>
-    <mesh file="head_pitch_link.stl"/>
-    <mesh file="head_yaw_link.stl"/>
-    <mesh file="head_roll_link.stl"/>
-    <mesh file="antenna_l_link.stl"/>
-    <mesh file="antenna_r_link.stl"/>
-  </asset>
-
-  <worldbody>
-    <body name="base_link" pos="0 0 0">
-      <inertial pos="-0.02021842 0.00083528 0.12542579" mass="4.79210199"
-        fullinertia="0.02137302 0.04234974 0.03522553 -0.00042611 -0.00039662 -0.00021014"/>
-      <geom type="mesh" mesh="base_link.stl" rgba="0.5 0.5 0.5 1"/>
-      <body name="imu_link" pos="0 0 0.192">
-        <inertial pos="-0.00180228 0.00019736 0.00024665" mass="0.01097827"
-          fullinertia="6.7e-7 6.4e-7 1.05e-6 3e-8 0 0"/>
-        <geom type="mesh" mesh="imu_link.stl" rgba="0.5 0.5 0.5 1"/>
-      </body>
-      <body name="hip_yaw_l_link" pos="0 0.0485 0.135">
-        <inertial pos="0.00252254 0.00070508 -0.05449077" mass="0.52575267"
-          fullinertia="0.00075426 0.00052774 0.00035805 1.59e-6 7.68e-6 -9.7e-6"/>
-        <geom type="mesh" mesh="hip_yaw_l_link.stl" rgba="0.5 0.5 0.5 1"/>
-        <joint name="hip_yaw_l" type="hinge" axis="0 0 1" range="-0.3 0.3"/>
-        <body name="hip_roll_l_link" pos="0.0213 0 -0.06043298">
-          <inertial pos="0.00367764 0.03007324 0" mass="0.09471651"
-            fullinertia="9.979e-5 3.369e-5 8.744e-5 4.68e-6 0 0"/>
-          <geom type="mesh" mesh="hip_roll_l_link.stl" rgba="0.5 0.5 0.5 1"/>
-          <joint name="hip_roll_l" type="hinge" axis="-1 0 0" range="-0.25 0.25"/>
-          <body name="hip_pitch_l_link" pos="0.00196102 0.0615 0">
-            <inertial pos="-0.01525688 0.021617 -0.05171027" mass="1.10902273"
-              fullinertia="0.0040687 0.00494463 0.00128739 -3.45e-6 -8.2742e-4 3.98e-6"/>
-            <geom type="mesh" mesh="hip_pitch_l_link.stl" rgba="0.5 0.5 0.5 1"/>
-            <joint name="hip_pitch_l" type="hinge" axis="0 1 0" range="0 1.9"/>
-            <body name="knee_pitch_l_link" pos="-0.02872891 0 -0.10721776">
-              <inertial pos="-0.03667274 -0.00722228 -0.08700579" mass="0.69554362"
-                fullinertia="0.0018502 0.00219946 0.00048102 2.94e-6 -2.5508e-4 -1.273e-5"/>
-              <geom type="mesh" mesh="knee_pitch_l_link.stl" rgba="0.5 0.5 0.5 1"/>
-              <joint name="knee_pitch_l" type="hinge" axis="0 1 0" range="-1.95 0"/>
-              <body name="ankle_pitch_l_link" pos="-0.04005675 0.0126 -0.12592328">
-                <inertial pos="0.02952057 -0.01332876 -0.05483445" mass="0.3644628"
-                  fullinertia="2.6745e-4 1.03954e-3 9.229e-4 2.099e-5 2.683e-5 -6.445e-5"/>
-                <geom type="mesh" mesh="ankle_pitch_l_link.stl" rgba="0.5 0.5 0.5 1"/>
-                <joint name="ankle_pitch_l" type="hinge" axis="0 -1 0" range="-1.8 1"/>
-              </body>
+<mujocoinclude>
+    <body name="base_link" pos="0 0 0.33">
+        <freejoint name="floating_base" />
+        <inertial pos="-0.02021842 0.00083528 0.12542579" mass="4.7921" fullinertia="0.021373 0.0423497 0.0352255 -0.00042611 -0.00039662 -0.00021014" />
+        <site name="imu" pos="0 0 0.192" quat="1 0 0 0" size="0.005" />
+        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="base_link" />
+        <geom type="mesh" mesh="base_link" contype="1" conaffinity="0" />
+        <geom pos="0 0 0.192" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="imu_link" />
+        <geom pos="0 0 0.192" quat="1 0 0 0" type="mesh" mesh="imu_link" contype="1" conaffinity="0" />
+        <body name="hip_yaw_l_link" pos="0 0.0485 0.135">
+            <inertial pos="0.00252254 0.00070508 -0.0544908" quat="0.999542 -0.0285433 -0.00969533 0.00281979" mass="0.525753" diaginertia="0.000754417 0.000528287 0.000357346" />
+            <joint name="hip_yaw_l" pos="0 0 0" axis="0 0 1" range="-0.3 0.3" actuatorfrcrange="-23.7 23.7" />
+            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="hip_yaw_l_link" />
+            <geom type="mesh" mesh="hip_yaw_l_link" contype="1" conaffinity="0" />
+            <body name="hip_roll_l_link" pos="0.0213 0 -0.060433">
+                <inertial pos="0.00367764 0.0300732 0" quat="0.70667 0.70667 0.0248618 0.0248618" mass="0.0947165" diaginertia="0.00010012 8.744e-05 3.33603e-05" />
+                <joint name="hip_roll_l" pos="0 0 0" axis="-1 0 0" range="-0.25 0.25" actuatorfrcrange="-23.7 23.7" />
+                <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="hip_roll_l_link" />
+                <geom type="mesh" mesh="hip_roll_l_link" contype="1" conaffinity="0" />
+                <body name="hip_pitch_l_link" pos="0.00196102 0.0615 0">
+                    <inertial pos="-0.0152569 0.021617 -0.0517103" quat="0.698415 0.0951773 0.0940109 0.703079" mass="1.10902" diaginertia="0.00494466 0.00429621 0.00105985" />
+                    <joint name="hip_pitch_l" pos="0 0 0" axis="0 1 0" range="0 1.9" actuatorfrcrange="-23.7 23.7" />
+                    <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="hip_pitch_l_link" />
+                    <geom type="mesh" mesh="hip_pitch_l_link" contype="1" conaffinity="0" />
+                    <body name="knee_pitch_l_link" pos="-0.0287289 0 -0.107218">
+                        <inertial pos="-0.0366727 -0.00722228 -0.0870058" quat="0.710034 0.060005 0.0658661 0.698508" mass="0.695544" diaginertia="0.00219963 0.00189609 0.000434961" />
+                        <joint name="knee_pitch_l" pos="0 0 0" axis="0 1 0" range="-1.95 0" actuatorfrcrange="-23.7 23.7" />
+                        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="knee_pitch_l_link" />
+                        <geom type="mesh" mesh="knee_pitch_l_link" contype="1" conaffinity="0" />
+                        <body name="ankle_pitch_l_link" pos="-0.0400568 0.0126 -0.125923">
+                            <inertial pos="0.0295206 -0.0133288 -0.0548344" quat="0.585109 0.403575 0.599179 0.368456" mass="0.364463" diaginertia="0.00106823 0.000896036 0.000265628" />
+                            <joint name="ankle_pitch_l" pos="0 0 0" axis="0 -1 0" range="-1.8 1" actuatorfrcrange="-23.7 23.7" />
+                            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="ankle_pitch_l_link" />
+                            <geom type="mesh" mesh="ankle_pitch_l_link" contype="1" conaffinity="0" />
+                        </body>
+                    </body>
+                </body>
             </body>
-          </body>
         </body>
-      </body>
-      <body name="hip_yaw_r_link" pos="0 -0.0485 0.135">
-        <inertial pos="0.00273633 -0.00070508 -0.05449073" mass="0.52575268"
-          fullinertia="0.00075426 0.00052742 0.00035772 -1.67e-6 8.35e-6 9.69e-6"/>
-        <geom type="mesh" mesh="hip_yaw_r_link.stl" rgba="0.5 0.5 0.5 1"/>
-        <joint name="hip_yaw_r" type="hinge" axis="0 0 1" range="-0.3 0.3"/>
-        <body name="hip_roll_r_link" pos="0.0216 0 -0.06043298">
-          <inertial pos="0.00367764 -0.03007323 0" mass="0.09471654"
-            fullinertia="9.979e-5 3.369e-5 8.744e-5 -4.68e-6 0 0"/>
-          <geom type="mesh" mesh="hip_roll_r_link.stl" rgba="0.5 0.5 0.5 1"/>
-          <joint name="hip_roll_r" type="hinge" axis="-1 0 0" range="-0.25 0.25"/>
-          <body name="hip_pitch_r_link" pos="0.00196102 -0.0615 0">
-            <inertial pos="-0.01525688 -0.021617 -0.0517098" mass="1.10902473"
-              fullinertia="0.00406874 0.00494467 0.00128739 3.45e-6 -8.2743e-4 -3.98e-6"/>
-            <geom type="mesh" mesh="hip_pitch_r_link.stl" rgba="0.5 0.5 0.5 1"/>
-            <joint name="hip_pitch_r" type="hinge" axis="0 -1 0" range="-1.9 0"/>
-            <body name="knee_pitch_r_link" pos="-0.02872891 0 -0.10721776">
-              <inertial pos="-0.03667274 0.00722228 -0.0870058" mass="0.69554362"
-                fullinertia="0.0018502 0.00219946 0.00048102 -2.94e-6 -2.5508e-4 1.273e-5"/>
-              <geom type="mesh" mesh="knee_pitch_r_link.stl" rgba="0.5 0.5 0.5 1"/>
-              <joint name="knee_pitch_r" type="hinge" axis="0 -1 0" range="0 1.95"/>
-              <body name="ankle_pitch_r_link" pos="-0.04005675 -0.0126 -0.12592328">
-                <inertial pos="0.02952057 0.01532876 -0.05483445" mass="0.3644628"
-                  fullinertia="2.6745e-4 1.03954e-3 9.229e-4 -2.099e-5 2.683e-5 6.445e-5"/>
-                <geom type="mesh" mesh="ankle_pitch_r_link.stl" rgba="0.5 0.5 0.5 1"/>
-                <joint name="ankle_pitch_r" type="hinge" axis="0 1 0" range="-1 1.8"/>
-              </body>
+        <body name="hip_yaw_r_link" pos="0 -0.0485 0.135">
+            <inertial pos="0.00273633 -0.00070508 -0.0544907" quat="0.999533 0.0285236 -0.0105309 -0.00293242" mass="0.525753" diaginertia="0.000754445 0.000527965 0.00035699" />
+            <joint name="hip_yaw_r" pos="0 0 0" axis="0 0 1" range="-0.3 0.3" actuatorfrcrange="-23.7 23.7" />
+            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="hip_yaw_r_link" />
+            <geom type="mesh" mesh="hip_yaw_r_link" contype="1" conaffinity="0" />
+            <body name="hip_roll_r_link" pos="0.0216 0 -0.060433">
+                <inertial pos="0.00367764 -0.0300732 0" quat="0.70667 0.70667 -0.0248618 -0.0248618" mass="0.0947165" diaginertia="0.00010012 8.744e-05 3.33603e-05" />
+                <joint name="hip_roll_r" pos="0 0 0" axis="-1 0 0" range="-0.25 0.25" actuatorfrcrange="-23.7 23.7" />
+                <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="hip_roll_r_link" />
+                <geom type="mesh" mesh="hip_roll_r_link" contype="1" conaffinity="0" />
+                <body name="hip_pitch_r_link" pos="0.00196102 -0.0615 0">
+                    <inertial pos="-0.0152569 -0.021617 -0.0517098" quat="0.703079 0.0940107 0.0951772 0.698415" mass="1.10902" diaginertia="0.0049447 0.00429625 0.00105985" />
+                    <joint name="hip_pitch_r" pos="0 0 0" axis="0 -1 0" range="-1.9 0" actuatorfrcrange="-23.7 23.7" />
+                    <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="hip_pitch_r_link" />
+                    <geom type="mesh" mesh="hip_pitch_r_link" contype="1" conaffinity="0" />
+                    <body name="knee_pitch_r_link" pos="-0.0287289 0 -0.107218">
+                        <inertial pos="-0.0366727 0.00722228 -0.0870058" quat="0.698508 0.0658661 0.060005 0.710034" mass="0.695544" diaginertia="0.00219963 0.00189609 0.000434961" />
+                        <joint name="knee_pitch_r" pos="0 0 0" axis="0 -1 0" range="0 1.95" actuatorfrcrange="-23.7 23.7" />
+                        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="knee_pitch_r_link" />
+                        <geom type="mesh" mesh="knee_pitch_r_link" contype="1" conaffinity="0" />
+                        <body name="ankle_pitch_r_link" pos="-0.0400568 -0.0126 -0.125923">
+                            <inertial pos="0.0295206 0.0153288 -0.0548344" quat="0.368456 0.599179 0.403575 0.585109" mass="0.364463" diaginertia="0.00106823 0.000896036 0.000265628" />
+                            <joint name="ankle_pitch_r" pos="0 0 0" axis="0 1 0" range="-1 1.8" actuatorfrcrange="-23.7 23.7" />
+                            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="ankle_pitch_r_link" />
+                            <geom type="mesh" mesh="ankle_pitch_r_link" contype="1" conaffinity="0" />
+                        </body>
+                    </body>
+                </body>
             </body>
-          </body>
         </body>
-      </body>
-      <body name="neck_pitch_link" pos="0.08775 -0.01185 0.1877">
-        <inertial pos="-0.03975408 0.01220877 0.06975907" mass="0.39138368"
-          fullinertia="6.1215e-4 7.9604e-4 4.1742e-4 5.737e-5 3.2062e-4 -9.401e-5"/>
-        <geom type="mesh" mesh="neck_pitch_link.stl" rgba="0.5 0.5 0.5 1"/>
-        <joint name="neck_pitch" type="hinge" axis="0 1 0" range="-0.1 0.1"/>
-        <body name="head_pitch_link" pos="-0.07600344 -0.0135 0.10954848">
-          <inertial pos="-0.00658316 0.03175031 0.02234257" mass="0.07478437"
-            fullinertia="4.889e-5 2.5e-5 5.323e-5 -8.1e-7 1.44e-6 2.76e-6"/>
-          <geom type="mesh" mesh="head_pitch_link.stl" rgba="0.5 0.5 0.5 1"/>
-          <joint name="head_pitch" type="hinge" axis="0 1 0" range="-0.1 0.1"/>
-          <body name="head_yaw_link" pos="0.00082517 0.0278 0.03312581">
-            <inertial pos="0.0157779 0.0022997 0.02325041" mass="0.25944297"
-              fullinertia="1.1636e-4 1.7407e-4 1.9408e-4 0 5.95e-6 0"/>
-            <geom type="mesh" mesh="head_yaw_link.stl" rgba="0.5 0.5 0.5 1"/>
-            <joint name="head_yaw" type="hinge" axis="0 0 1" range="-0.1 0.1"/>
-            <body name="head_roll_link" pos="0.05813309 0.0023 0.01600354">
-              <inertial pos="-0.02934342 0.00291823 0.01859489" mass="1.03614616"
-                fullinertia="6.16663e-3 8.6298e-3 1.348763e-2 -2.2437e-4 6.4323e-4 -2.906e-5"/>
-              <geom type="mesh" mesh="head_roll_link.stl" rgba="0.5 0.5 0.5 1"/>
-              <joint name="head_roll" type="hinge" axis="-1 0 0" range="-0.1 0.1"/>
-              <body name="antenna_l_link" pos="-0.19134149 0.06976948 0.03771744">
-                <inertial pos="-0.00151267 0.03279333 0.00679348" mass="0.02808194"
-                  fullinertia="1.636e-5 2.318e-5 1.062e-5 -3e-8 -8.7e-6 -7.2e-7"/>
-                <geom type="mesh" mesh="antenna_l_link.stl" rgba="0.5 0.5 0.5 1"/>
-                <joint name="antenna_l" type="hinge" axis="0 -1 0" range="-1 1"/>
-              </body>
-              <body name="antenna_r_link" pos="-0.19134149 -0.06976948 0.03771744">
-                <inertial pos="-0.00470675 -0.03279333 0.005127" mass="0.02808193"
-                  fullinertia="2.246e-5 2.318e-5 4.53e-6 -3.4e-7 -1.86e-6 6.4e-7"/>
-                <geom type="mesh" mesh="antenna_r_link.stl" rgba="0.5 0.5 0.5 1"/>
-                <joint name="antenna_r" type="hinge" axis="0 1 0" range="-1 1"/>
-              </body>
+        <body name="neck_pitch_link" pos="0.08775 -0.01185 0.1877">
+            <inertial pos="-0.0397541 0.0122088 0.0697591" quat="0.935359 -0.0408076 -0.319088 -0.147042" mass="0.391384" diaginertia="0.000852412 0.000812433 0.000160765" />
+            <joint name="neck_pitch" pos="0 0 0" axis="0 1 0" range="-0.1 0.1" actuatorfrcrange="-23.7 23.7" />
+            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="neck_pitch_link" />
+            <geom type="mesh" mesh="neck_pitch_link" contype="1" conaffinity="0" />
+            <body name="head_pitch_link" pos="-0.0760034 -0.0135 0.109548">
+                <inertial pos="-0.00658316 0.0317503 0.0223426" quat="0.597044 0.524993 -0.418691 0.438883" mass="0.0747844" diaginertia="5.38685e-05 4.85558e-05 2.46957e-05" />
+                <joint name="head_pitch" pos="0 0 0" axis="0 1 0" range="-0.1 0.1" actuatorfrcrange="-8 8" />
+                <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="head_pitch_link" />
+                <geom type="mesh" mesh="head_pitch_link" contype="1" conaffinity="0" />
+                <body name="head_yaw_link" pos="0.00082517 0.0278 0.0331258">
+                    <inertial pos="0.0157779 0.0022997 0.0232504" quat="0 0.733449 0 0.679745" mass="0.259443" diaginertia="0.000194533 0.00017407 0.000115907" />
+                    <joint name="head_yaw" pos="0 0 0" axis="0 0 1" range="-0.1 0.1" actuatorfrcrange="-8 8" />
+                    <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="head_yaw_link" />
+                    <geom type="mesh" mesh="head_yaw_link" contype="1" conaffinity="0" />
+                    <body name="head_roll_link" pos="0.0581331 0.0023 0.0160035">
+                        <inertial pos="-0.0293434 0.00291823 0.0185949" quat="-0.0353382 0.736429 0.0256946 0.675103" mass="1.03615" diaginertia="0.0135442 0.00864856 0.0060913" />
+                        <joint name="head_roll" pos="0 0 0" axis="-1 0 0" range="-0.1 0.1" actuatorfrcrange="-8 8" />
+                        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="head_roll_link" />
+                        <geom type="mesh" mesh="head_roll_link" contype="1" conaffinity="0" />
+                        <body name="antenna_l_link" pos="-0.191341 0.0697695 0.0377174">
+                            <inertial pos="-0.00151267 0.0327933 0.00679348" quat="0.811706 0.146123 0.271081 0.496283" mass="0.0280819" diaginertia="2.34078e-05 2.24425e-05 4.30969e-06" />
+                            <joint name="antenna_l" pos="0 0 0" axis="0 -1 0" range="-1 1" actuatorfrcrange="-3.9 3.9" />
+                            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="antenna_l_link" />
+                            <geom type="mesh" mesh="antenna_l_link" contype="1" conaffinity="0" />
+                        </body>
+                        <body name="antenna_r_link" pos="-0.191341 -0.0697695 0.0377174">
+                            <inertial pos="-0.00470675 -0.0327933 0.005127" quat="0.515764 0.0517103 0.0125287 0.855077" mass="0.0280819" diaginertia="2.34128e-05 2.24374e-05 4.31986e-06" />
+                            <joint name="antenna_r" pos="0 0 0" axis="0 1 0" range="-1 1" actuatorfrcrange="-3.9 3.9" />
+                            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="antenna_r_link" />
+                            <geom type="mesh" mesh="antenna_r_link" contype="1" conaffinity="0" />
+                        </body>
+                    </body>
+                </body>
             </body>
-          </body>
         </body>
-      </body>
     </body>
-  </worldbody>
-</mujoco>
+</mujocoinclude>

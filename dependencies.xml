@@ -1,0 +1,28 @@
+<mujocoinclude>
+    <compiler angle="radian" inertiafromgeom="auto" inertiagrouprange="4 5" meshdir="meshes/"/>
+    <asset>
+        <mesh name="base_link" file="base_link.stl" />
+        <mesh name="imu_link" file="imu_link.stl" />
+        <mesh name="hip_yaw_l_link" file="hip_yaw_l_link.stl" />
+        <mesh name="hip_roll_l_link" file="hip_roll_l_link.stl" />
+        <mesh name="hip_pitch_l_link" file="hip_pitch_l_link.stl" />
+        <mesh name="knee_pitch_l_link" file="knee_pitch_l_link.stl" />
+        <mesh name="ankle_pitch_l_link" file="ankle_pitch_l_link.stl" />
+        <mesh name="hip_yaw_r_link" file="hip_yaw_r_link.stl" />
+        <mesh name="hip_roll_r_link" file="hip_roll_r_link.stl" />
+        <mesh name="hip_pitch_r_link" file="hip_pitch_r_link.stl" />
+        <mesh name="knee_pitch_r_link" file="knee_pitch_r_link.stl" />
+        <mesh name="ankle_pitch_r_link" file="ankle_pitch_r_link.stl" />
+        <mesh name="neck_pitch_link" file="neck_pitch_link.stl" />
+        <mesh name="head_pitch_link" file="head_pitch_link.stl" />
+        <mesh name="head_yaw_link" file="head_yaw_link.stl" />
+        <mesh name="head_roll_link" file="head_roll_link.stl" />
+        <mesh name="antenna_l_link" file="antenna_l_link.stl" />
+        <mesh name="antenna_r_link" file="antenna_r_link.stl" />
+
+        <texture name="texplane" type="2d" builtin="checker" rgb1=".2 .3 .4" rgb2=".1 0.15 0.2" width="512" height="512" mark="cross" markrgb=".8 .8 .8"/>
+        <texture name="texplane2" type="2d" builtin="checker" rgb1="1 0.3137 0.1843" rgb2="0.0 0.30196 0.38039" width="512" height="512" mark="cross" markrgb=".8 .8 .8"/>
+        <material name="matplane" reflectance="0." texture="texplane" texrepeat="1 1" texuniform="true"/>
+        <material name="matplane2" reflectance="0.1" texture="texplane2" texrepeat="1 1" texuniform="true"/>
+    </asset>
+</mujocoinclude>

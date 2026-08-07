@@ -42,6 +42,29 @@ The BD-927 Droid is a bipedal platform with **16 revolute joints** across the bo
 - **Total joints:** 16 revolute + 1 fixed
 - **Actuators:** Unitree GO-M8010-6
 
+---
+
+## Mujoco Simulation
+
+```bash
+# One-time: create the .venv and install mujoco (pyproject.toml; uv, non-packaged project)
+uv sync
+
+# Regenerate the MuJoCo robot model from the URDF. Runs from anywhere — the script
+# chdir's to its own directory. Re-run after ANY edit to the bdx.urdf
+
+uv run python build_mujoco_xml.py
+
+# Headless check that the assembled model compiles (load via world.xml — the robot
+# include dreambo_asymmetry.xml is a fragment and can't be loaded standalone).
+uv run python -c "import mujoco; mujoco.MjModel.from_xml_path('world.xml')"
+
+# Interactive viewer (needs a display)
+uv run python -m mujoco.viewer --mjcf=world.xml
+```
+
+---
+
 ## License
 
 This project is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
